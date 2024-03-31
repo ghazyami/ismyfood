@@ -1,0 +1,15 @@
+/home/ghazy/dali/workspace/ghazyami/ismyfood/core/src/main/java/com/github/ghazyami/ismyfood/off/entity/Images.java
+/home/ghazy/dali/workspace/ghazyami/ismyfood/core/src/main/java/com/github/ghazyami/ismyfood/off/entity/Nutriments.java
+/home/ghazy/dali/workspace/ghazyami/ismyfood/core/src/main/java/com/github/ghazyami/ismyfood/server/rules/entity/ProcessProductResponse.java
+/home/ghazy/dali/workspace/ghazyami/ismyfood/core/src/main/java/com/github/ghazyami/ismyfood/off/entity/NutrientLevels.java
+/home/ghazy/dali/workspace/ghazyami/ismyfood/core/src/main/java/com/github/ghazyami/ismyfood/off/entity/SelectedImages.java
+/home/ghazy/dali/workspace/ghazyami/ismyfood/core/src/main/java/com/github/ghazyami/ismyfood/off/entity/Product.java
+/home/ghazy/dali/workspace/ghazyami/ismyfood/core/src/main/java/com/github/ghazyami/ismyfood/off/entity/SelectedImage.java
+/home/ghazy/dali/workspace/ghazyami/ismyfood/core/src/main/java/com/github/ghazyami/ismyfood/off/entity/ProductResponse.java
+/home/ghazy/dali/workspace/ghazyami/ismyfood/core/src/main/java/com/github/ghazyami/ismyfood/off/entity/Ingredient.java
+/home/ghazy/dali/workspace/ghazyami/ismyfood/core/src/main/java/com/github/ghazyami/ismyfood/off/entity/SelectedImageItem.java
+/home/ghazy/dali/workspace/ghazyami/ismyfood/core/src/main/java/com/github/ghazyami/ismyfood/server/rules/entity/ProcessProductRequest.java
+/home/ghazy/dali/workspace/ghazyami/ismyfood/core/src/main/java/com/github/ghazyami/ismyfood/off/entity/LanguagesCodes.java
+/home/ghazy/dali/workspace/ghazyami/ismyfood/core/src/main/java/com/github/ghazyami/ismyfood/off/entity/Source.java
+/home/ghazy/dali/workspace/ghazyami/ismyfood/core/src/main/java/com/github/ghazyami/ismyfood/off/boundary/OpenFoodFactsClient.java
+/home/ghazy/dali/workspace/ghazyami/ismyfood/core/src/main/java/com/github/ghazyami/ismyfood/server/rules/boundary/RulesResource.java

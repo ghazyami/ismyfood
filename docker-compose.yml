@@ -1,0 +1,57 @@
+services:
+  ui:
+    image: ismyfood/ui:latest
+    ports:
+      - "8000:8080"
+    environment:
+      SERVER_MP_REST_URI: http://server:8080/api
+    labels:
+      - "traefik.http.routers.ui.rule=HostRegexp(`{subhost:[a-zA-Z0-9-]+}.ui.sslip.io`)"
+      - "traefik.http.services.ui.loadbalancer.server.port=8080"
+    build:
+      context: ui
+      dockerfile: Dockerfile
+
+  server:
+    image: ismyfood/server:latest
+    ports:
+      - "8001:8080"
+    volumes:
+      - /home/ghazy/workspace/payara/ismyfood/rules:/rules
+    labels:
+      - "traefik.http.routers.server.rule=HostRegexp(`{subhost:[a-zA-Z0-9-]+}.api.sslip.io`)"
+      - "traefik.http.services.server.loadbalancer.server.port=8080"
+    build:
+      context: server
+      dockerfile: Dockerfile
+
+  prometheus:
+    image: docker.io/prom/prometheus:v2.42.0
+    volumes:
+      - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: docker.io/grafana/grafana-oss:9.3.6
+    ports:
+      - "3000:3000"
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: 'true'
+    volumes:
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+    depends_on:
+      - prometheus
+    labels:
+      - "traefik.http.routers.grafana.rule=HostRegexp(`{subhost:[a-zA-Z0-9-]+}.grafana.sslip.io`)"
+      - "traefik.http.services.grafana.loadbalancer.server.port=3000"
+
+  proxy:
+    image: traefik:v2.9
+    command: --api.insecure=true --providers.docker
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

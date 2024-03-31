@@ -1,0 +1,15 @@
+com/github/ghazyami/ismyfood/off/entity/LanguagesCodes.class
+com/github/ghazyami/ismyfood/off/entity/SelectedImage.class
+com/github/ghazyami/ismyfood/off/entity/ProductResponse.class
+com/github/ghazyami/ismyfood/off/entity/Images.class
+com/github/ghazyami/ismyfood/off/entity/Source.class
+com/github/ghazyami/ismyfood/server/rules/entity/ProcessProductResponse.class
+com/github/ghazyami/ismyfood/off/entity/Ingredient.class
+com/github/ghazyami/ismyfood/off/entity/SelectedImages.class
+com/github/ghazyami/ismyfood/server/rules/boundary/RulesResource.class
+com/github/ghazyami/ismyfood/off/entity/Product.class
+com/github/ghazyami/ismyfood/off/entity/Nutriments.class
+com/github/ghazyami/ismyfood/server/rules/entity/ProcessProductRequest.class
+com/github/ghazyami/ismyfood/off/entity/NutrientLevels.class
+com/github/ghazyami/ismyfood/off/entity/SelectedImageItem.class
+com/github/ghazyami/ismyfood/off/boundary/OpenFoodFactsClient.class

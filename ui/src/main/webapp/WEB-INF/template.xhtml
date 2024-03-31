@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="jakarta.faces.core"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                template="/admin.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="head">
+        <f:loadBundle var="msg" basename="ismyfood"/>
+        <title><h:outputText value="IS MY FOOD" /></title>
+        <link rel="manifest" href="manifest.json"/>
+        <meta name="theme-color" content="#444"/>
+        <meta name="mobile-web-app-capable" content="yes"/>
+    </ui:define>
+
+    <ui:define name="logo">
+        <p:outputLabel value="IS MY FOOD" />
+    </ui:define>
+
+    <ui:define name="logo-mini">
+        <p:outputLabel value="ISMF" />
+    </ui:define>
+
+    <ui:define name="menu">
+        <ui:include src="/includes/menu.xhtml"/>
+    </ui:define>
+
+    <ui:define name="top-menu">
+        <ui:include src="/includes/top-bar.xhtml"/>
+    </ui:define>
+
+    <ui:define name="footer">
+        <a target="_blank"
+           href="http://github.com/ghazyami">
+            Ghazy Ibrahim
+        </a>
+
+        <h:panelGroup layout="block" styleClass="pull-right hidden-xs" style="color: gray">
+            <i>©2024</i>
+        </h:panelGroup>
+
+    </ui:define>
+
+
+</ui:composition>

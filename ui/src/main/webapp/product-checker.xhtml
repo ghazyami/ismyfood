@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="jakarta.faces.core"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:param name="renderBreadCrumb" value="false"/>
+
+    <ui:define name="title">
+        <h:outputText value="#{msg['prod.check']}" />
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form id="form" prependId="false">
+
+            <h:panelGroup layout="block" styleClass="box box-primary" >
+                <h:panelGroup layout="block" styleClass="box-header with-border">
+                    <p:outputLabel value="#{msg['prod.check.txt']}" />
+                </h:panelGroup>
+
+                <h:panelGroup layout="block" styleClass="ui-g ui-fluid">
+                    <h:panelGroup layout="block" styleClass="ui-xs-12 ui-md-2">
+                        <p:outputLabel for="productCode" value="#{msg['prod.code']}"/>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" styleClass="ui-xs-12 ui-md-3" >
+                        <p:inputNumber id="productCode" value="#{productCheckService.request.productCode}" modifyValueOnWheel="false" decimalPlaces="0" thousandSeparator=""/>
+                    </h:panelGroup>
+                </h:panelGroup>
+
+                <h:panelGroup layout="block" styleClass="ui-g ui-fluid">
+                    <h:panelGroup layout="block" styleClass="ui-xs-12 ui-md-2">
+                        <p:outputLabel for="checkType" value="#{msg['prod.check.type']}"/>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" styleClass="ui-xs-12 ui-md-3" >
+                        <p:selectOneRadio id="checkType" value="#{productCheckService.request.inline}" layout="lineDirection">
+                            <f:selectItem itemLabel="#{msg['prod.check.type.static']}" itemValue="false"/>
+                            <f:selectItem itemLabel="#{msg['prod.check.type.dynamic']}" itemValue="true"/>
+                            <p:ajax update="ruleSelector"/>
+                        </p:selectOneRadio>
+                    </h:panelGroup>
+                </h:panelGroup>
+
+
+                <h:panelGroup id="ruleSelector" layout="block" styleClass="ui-g ui-fluid" >
+                    <h:panelGroup layout="block" styleClass="ui-xs-12 ui-md-2" >
+                        <p:outputLabel for="rule" value="#{msg['prod.rule']}"/>
+                    </h:panelGroup>
+
+                    <h:panelGroup layout="block" styleClass="ui-xs-12 ui-md-3 " rendered="#{not productCheckService.request.inline}">
+                        <p:selectOneMenu id="rule" value="#{productCheckService.request.ruleName}" filter="true" filterMatchMode="contains">
+                            <f:selectItem itemLabel="Default" itemValue="default"/>
+                            <f:selectItem itemLabel="Peanuts Allergy" itemValue="peanuts"/>
+                        </p:selectOneMenu>
+                    </h:panelGroup>
+
+                    <h:panelGroup layout="block" styleClass="ui-xs-12 ui-md-3 " rendered="#{productCheckService.request.inline}">
+                        <p:inputTextarea value="#{productCheckService.request.inlineRule}"  placeholder="positiveRuleMatch = true\nmessage = 'safe according to my custom rule'"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+
+
+                <h:panelGroup layout="block" styleClass="ui-xs-12">
+                    <p:commandButton value="#{msg['prod.check.go']}" actionListener="#{productCheckService.lookup()}" update="@form"
+                                     icon="fa fa-search"
+                                     styleClass="btn-primary">
+                    </p:commandButton>
+                </h:panelGroup>
+
+                <h:panelGroup layout="block" styleClass="box-header with-border" rendered="#{not empty productCheckService.response}">
+                    <h:panelGroup layout="block" styleClass="col-xs-12">
+                        <h:panelGroup layout="block" styleClass="info-box #{productCheckService.response.positiveRuleMatch ? 'bg-green' : 'bg-red'}">
+                            <span class="info-box-icon"><i class="fa #{productCheckService.response.positiveRuleMatch ? 'fa-check' : ' fa-times'}" /></span>
+                            <h:panelGroup layout="block" styleClass="info-box-content">
+                                <p:outputLabel styleClass="info-box-number" value="#{productCheckService.response.message.toUpperCase()}" />
+                            </h:panelGroup>
+                        </h:panelGroup>
+                    </h:panelGroup>
+
+                    <h:panelGroup layout="block" styleClass="col-xs-12">
+                        <h:panelGroup layout="block" styleClass="info-box bg-yellow">
+                            <span class="info-box-icon"><i class="fa fa-exclamation" /></span>
+                            <h:panelGroup layout="block" styleClass="info-box-content">
+                                <p:outputLabel styleClass="info-box-more" value="#{msg['disclaimer']}" />
+                            </h:panelGroup>
+                        </h:panelGroup>
+                    </h:panelGroup>
+                </h:panelGroup>
+
+            </h:panelGroup>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
